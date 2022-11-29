@@ -10,8 +10,8 @@ node_modules
 /coverage
 
 # database
-/prisma/db.sqlite
-/prisma/db.sqlite-journal
+/apps/db/prisma/db.sqlite
+/apps/db/prisma/db.sqlite-journal
 
 # next.js
 /.next/
