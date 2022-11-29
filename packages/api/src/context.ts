@@ -1,8 +1,8 @@
 import { type inferAsyncReturnType } from "@trpc/server";
 import { type CreateNextContextOptions } from "@trpc/server/adapters/next";
 
-import { getServerSession, type Session } from "@submix/auth";
-import { prisma } from "@submix/db";
+import { getServerSession, type Session } from "@crocoderdev/auth";
+import { prisma } from "@crocoderdev/db";
 
 type CreateContextOptions = {
   session: Session | null;
