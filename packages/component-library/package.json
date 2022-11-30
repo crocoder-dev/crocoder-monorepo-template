@@ -1,20 +1,23 @@
 {
   "name": "@crocoderdev/component-library",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.1.0",
   "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
   "scripts": {
+    "components-dev": "NODE_ENV=development vite build -- watch",
     "build": "NODE_ENV=production vite build",
     "ladle": "ladle serve"
   },
   "peerDependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
   },
   "dependencies": {
     "@crocoderdev/tailwind-config": "*",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
   },
   "devDependencies": {
     "@ladle/react": "^2.4.5",

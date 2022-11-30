@@ -2,9 +2,10 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import { signIn, signOut } from "next-auth/react";
 import { trpc } from "../utils/trpc";
+import { Button } from "@crocoderdev/component-library";
 
 const Home: NextPage = () => {
-  const hello = trpc.example.hello.useQuery({ text: 'abc' });
+  const hello = trpc.example.hello.useQuery({ text: "abc" });
 
   return (
     <>
@@ -19,12 +20,11 @@ const Home: NextPage = () => {
             Create <span className="text-[hsl(280,100%,70%)]">T3</span> Turbo
           </h1>
           <AuthShowcase />
+          <Button />
 
           <div className="flex h-[60vh] justify-center px-4 text-2xl">
             {hello.data ? (
-              <div className="flex flex-col gap-4">
-                {hello.data.greeting}
-              </div>
+              <div className="flex flex-col gap-4">{hello.data.greeting}</div>
             ) : (
               <p>Loading...</p>
             )}

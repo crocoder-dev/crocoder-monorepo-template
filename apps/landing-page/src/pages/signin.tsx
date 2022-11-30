@@ -1,5 +1,9 @@
-import { getProviders, signIn} from "next-auth/react";
-export default function SignIn({ providers }) {
+import { getProviders, signIn } from "next-auth/react";
+export default function SignIn({
+  providers,
+}: {
+  providers: { name: string; id: string }[];
+}) {
   return (
     <>
       {Object.values(providers).map((provider) => (
@@ -12,6 +16,6 @@ export default function SignIn({ providers }) {
     </>
   );
 }
-export async function getServerSideProps(context) {
+export async function getServerSideProps() {
   return { props: { providers: await getProviders() } };
 }

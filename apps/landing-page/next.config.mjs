@@ -15,6 +15,7 @@ const config = {
       "@crocoderdev/api",
       "@crocoderdev/auth",
       "@crocoderdev/db",
+      "@crocoderdev/component-library",
     ],
   },
   // We already do linting on GH actions

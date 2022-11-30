@@ -9,6 +9,7 @@
     "build": "turbo build",
     "clean": "rm -rf node_modules",
     "clean:workspaces": "turbo clean",
+    "components-dev": "turbo components-dev",
     "db-generate": "turbo db-generate",
     "db-push": "turbo db-push",
     "dev": "turbo dev --parallel",
