@@ -10,14 +10,14 @@ const Home: NextPage = () => {
   return (
     <>
       <Head>
-        <title>crocoder.dev web app</title>
-        <meta name="description" content="crocoder.dev web app" />
+        <title>crocoder.dev edge app</title>
+        <meta name="description" content="crocoder.dev edge app" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="flex h-screen flex-col items-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
         <div className="container flex flex-col items-center justify-center gap-12 px-4 py-8">
           <h1 className="text-5xl font-extrabold tracking-tight sm:text-[5rem]">
-            crocoder.dev web app
+            crocoder.dev edge app
           </h1>
           <AuthShowcase />
           <Button />

@@ -1,4 +1,5 @@
 import { PrismaClient } from "@prisma/client";
+import * as edge from "@prisma/client/edge";
 
 declare global {
   // allow global `var` declarations
@@ -16,6 +17,7 @@ export const prisma =
   });
 
 export * from "@prisma/client";
+export { edge };
 
 if (process.env.NODE_ENV !== "production") {
   global.prisma = prisma;

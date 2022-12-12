@@ -1,0 +1,19 @@
+{
+  "name": "@crocoderdev/edge-db",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "clean": "rm -rf .turbo node_modules",
+    "lint": "eslint . --ext .ts,.tsx",
+    "type-check": "tsc --noEmit"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@crocoderdev/db": "*",
+    "kysely": "0.22.0",
+    "kysely-planetscale": "1.2.0"
+  }
+}

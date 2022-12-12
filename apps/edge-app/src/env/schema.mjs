@@ -7,6 +7,11 @@ import { z } from "zod";
  */
 export const serverSchema = z.object({
   NODE_ENV: z.enum(["development", "test", "production"]),
+  DATABASE_URL: z.string(),
+  EU_CENTRAL_1_DATABASE_URL: z.string(),
+  EU_WEST_2_DATABASE_URL: z.string(),
+  US_EAST_1_DATABASE_URL: z.string(),
+  US_WEST_2_DATABASE_URL: z.string(),
 });
 
 /**
