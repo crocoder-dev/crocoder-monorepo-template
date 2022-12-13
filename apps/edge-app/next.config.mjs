@@ -10,6 +10,8 @@ const config = {
   reactStrictMode: true,
   swcMinify: true,
   experimental: {
+    appDir: true,
+    runtime: "experimental-edge",
     // Enables hot-reload and easy integration for local packages
     transpilePackages: [
       "@crocoderdev/api",
