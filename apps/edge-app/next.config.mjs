@@ -14,9 +14,7 @@ const config = {
     runtime: "experimental-edge",
     // Enables hot-reload and easy integration for local packages
     transpilePackages: [
-      "@crocoderdev/api",
-      "@crocoderdev/auth",
-      "@crocoderdev/db",
+      "@crocoderdev/edge-db",
       "@crocoderdev/component-library",
     ],
   },
