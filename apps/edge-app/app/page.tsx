@@ -1,6 +1,5 @@
 import { headers } from "next/headers";
 import getClosestEdgeDatabase from "@crocoderdev/edge-db";
-import { trpc } from "../src/utils/trpc";
 
 async function getData() {
   const longitude = headers().get("x-vercel-ip-longitude") ?? "0";
