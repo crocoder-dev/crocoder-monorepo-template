@@ -9,7 +9,8 @@
     "with-env": "dotenv -e ../../.env --",
     "dev": "npm run with-env prisma studio --port 5556",
     "db-push": "npm run with-env prisma db push",
-    "db-generate": "npm run with-env prisma generate"
+    "db-generate": "npm run with-env prisma generate",
+    "seed": "node prisma/seed.js"
   },
   "dependencies": {
     "@prisma/client": "^4.7.1"
