@@ -23,7 +23,7 @@ const databases = [
     datacenter: "ap-southeast-1",
     geoLocation: { lat: 1.3218269, long: 103.6930643 },
     DB_URL: process.env.AP_SOUTHEAST_1_DATABASE_URL,
-  },
+  },*/
   {
     datacenter: "ap-southeast-2",
     geoLocation: { lat: -33.9117717, long: 151.1907535 },
@@ -38,7 +38,7 @@ const databases = [
     datacenter: "ap-south-1",
     geoLocation: { lat: 19.2425503, long: 72.9667878 },
     DB_URL: process.env.AP_SOUTH_1_DATABASE_URL,
-  },*/
+  },
 ];
 
 export default databases;
