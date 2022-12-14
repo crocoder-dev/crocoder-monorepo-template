@@ -2,6 +2,7 @@ import databaseInfos from "./databaseInfos";
 import DB from "./db";
 import { Kysely } from "kysely";
 import { PlanetScaleDialect } from "kysely-planetscale";
+import databases from "./databaseInfos";
 
 const deg2rad = (deg: number): number => {
   return deg * (Math.PI / 180);
@@ -28,8 +29,9 @@ const calculateDistance = (
 
 export const getClosestDatabaseURL = (lat: number, long: number) => {
   let closestDistance = Infinity;
-  let closestDatabase = databaseInfos[0]?.DB_URL;
-  let closestDatacenter = databaseInfos[0]?.datacenter;
+  let closestDatabase = databases[0]?.DB_URL;
+  let closestDatacenter = null;
+  let closestGeolocation = null;
 
   for (const database of databaseInfos) {
     const distance = calculateDistance(
@@ -43,10 +45,11 @@ export const getClosestDatabaseURL = (lat: number, long: number) => {
       closestDistance = distance;
       closestDatabase = database.DB_URL;
       closestDatacenter = database.datacenter;
+      closestGeolocation = database.geoLocation;
     }
   }
   console.log(
-    `Closest database from ${lat},${long} is ${closestDatacenter} (${closestDistance}km)`,
+    `Closest database from ${lat},${long} is ${closestDatacenter} (${closestDistance}km ${closestGeolocation?.lat},${closestGeolocation.long} )`,
   );
   return closestDatabase;
 };
