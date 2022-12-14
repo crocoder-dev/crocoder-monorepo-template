@@ -49,7 +49,7 @@ export const getClosestDatabaseURL = (lat: number, long: number) => {
     }
   }
   console.log(
-    `Closest database from ${lat},${long} is ${closestDatacenter} (${closestDistance}km ${closestGeolocation?.lat},${closestGeolocation.long} )`,
+    `Closest database from ${lat},${long} is ${closestDatacenter} (${closestDistance}km ${closestGeolocation?.lat},${closestGeolocation?.long} )`,
   );
   return closestDatabase;
 };
