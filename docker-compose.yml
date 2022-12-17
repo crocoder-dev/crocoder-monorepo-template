@@ -1,5 +1,38 @@
-version: "3.3"
+version: "3.8"
 services:
+  medusa:
+    build:
+      context: ./apps/medusa
+      dockerfile: Dockerfile
+    image: backend:starter
+    container_name: medusa
+    depends_on:
+      - postgres
+      - redis
+    environment:
+      DATABASE_URL: postgres://postgres:postgres@postgres:5432/medusa-docker
+      REDIS_URL: redis://redis
+      NODE_ENV: development
+      JWT_SECRET: something
+      COOKIE_SECRET: something
+      PORT: 9000
+    ports:
+      - "9000:9000"
+    volumes:
+      - ./apps/medusa:/app/medusa
+      - node_modules:/app/medusa/node_modules
+  postgres:
+    image: postgres:10.4
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: medusa-docker
+  redis:
+    image: redis
+    expose:
+      - 6379
   db:
     image: mysql:5.7
     restart: always
@@ -23,3 +56,4 @@ services:
 # Names our volume
 volumes:
   db:
+  node_modules:
