@@ -4,6 +4,7 @@ import {
   CustomerService,
   Customer,
 } from "@medusajs/medusa";
+import { CustomerRepository } from "@medusajs/medusa/dist/repositories/customer";
 import { EntityManager } from "typeorm";
 
 export type AuthenticateResult = {
@@ -16,42 +17,40 @@ type InjectedDependencies = {
   manager: EntityManager;
   userService: UserService;
   customerService: CustomerService;
+  customerRepository: typeof CustomerRepository;
 };
 
 class CroCoderAuthService extends TransactionBaseService {
   protected manager_: EntityManager;
   protected transactionManager_: EntityManager | undefined;
-  protected readonly userService_: UserService;
-  protected readonly customerService_: CustomerService;
+  protected readonly customerRepository_: typeof CustomerRepository;
 
-  constructor({ manager, userService, customerService }: InjectedDependencies) {
+  constructor({ manager, customerRepository }: InjectedDependencies) {
     super(arguments[0]);
-
     this.manager_ = manager;
-    this.userService_ = userService;
-    this.customerService_ = customerService;
+    this.customerRepository_ = customerRepository;
   }
 
   async authenticateCustomer(email: string): Promise<AuthenticateResult> {
-    return await this.atomicPhase_(async (transactionManager) => {
-      try {
-        const customer: Customer = await this.customerService_
-          .withTransaction(transactionManager)
-          .retrieveRegisteredByEmail(email);
+    console.log("email", email);
 
-        return {
-          success: true,
-          customer,
-        };
-      } catch (error) {
-        // ignore
-      }
+    const customerRepo = this.manager_.getCustomRepository(
+      this.customerRepository_,
+    );
 
+    const [customer] = await customerRepo.find({ email });
+
+    if (customer) {
       return {
-        success: false,
-        error: "Invalid email or password",
+        success: true,
+        customer,
       };
-    });
+    }
+
+    return {
+      success: false,
+      error: "Invalid email",
+    };
   }
 }
 

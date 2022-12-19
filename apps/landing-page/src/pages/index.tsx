@@ -6,6 +6,7 @@ import { Button } from "@crocoderdev/component-library";
 
 const Home: NextPage = () => {
   const hello = trpc.example.hello.useQuery({ text: "abc" });
+  const test = trpc.example.test.useQuery();
 
   return (
     <>

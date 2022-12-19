@@ -45,7 +45,6 @@ export default () => {
           expiresIn: "30d",
         },
       );
-
       const customerService: CustomerService =
         req.scope.resolve("customerService");
       const customer = await customerService.retrieve(
