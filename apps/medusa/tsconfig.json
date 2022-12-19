@@ -1,5 +1,15 @@
 {
+  "extends": "../../tsconfig.json",
   "compilerOptions": {
     "experimentalDecorators": true
-  }
+  },
+  "exclude": [],
+  "include": [
+    "next-env.d.ts",
+    "node_modules/@crocoderdev/auth/next-auth.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.cjs",
+    "**/*.mjs"
+  ]
 }

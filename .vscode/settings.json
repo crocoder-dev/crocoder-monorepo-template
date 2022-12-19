@@ -8,5 +8,17 @@
   "typescript.tsdk": "node_modules/typescript/lib",
   "[prisma]": {
     "editor.defaultFormatter": "Prisma.prisma"
-  }
+  },
+  "sqltools.connections": [
+    {
+      "previewLimit": 50,
+      "server": "localhost",
+      "port": 5432,
+      "driver": "PostgreSQL",
+      "name": "localhost",
+      "username": "postgres",
+      "password": "postgres",
+      "database": "medusa-docker"
+    }
+  ]
 }
