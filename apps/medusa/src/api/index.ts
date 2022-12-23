@@ -3,13 +3,13 @@ import "@medusajs/medusa/dist/types/global";
 import admin from "@medusajs/medusa/dist/api/middlewares/authenticate";
 import { EntityManager } from "typeorm";
 import jwt from "jsonwebtoken";
-import { CustomerService, AuthService } from "@medusajs/medusa";
+import { CustomerService } from "@medusajs/medusa";
 import bodyParser from "body-parser";
 import cors from "cors";
 import { projectConfig } from "../../medusa-config";
 
 const corsOptions = {
-  origin: projectConfig.store_cors.split(","),
+  origin: projectConfig.admin_cors.split(","),
   credentials: true,
 };
 
@@ -18,19 +18,26 @@ export default () => {
 
   const jsonParser = bodyParser.json();
 
-  router.options("/store/email-auth", cors(corsOptions));
-  router.post("/store/email-auth", jsonParser, admin(), async (req, res) => {
+  router.options("/admin/email-auth", cors(corsOptions));
+  router.post("/admin/email-auth", jsonParser, admin(), async (req, res) => {
     console.log((req as any).session);
     const { email } = req.body;
     const customerService: CustomerService =
       req.scope.resolve("customerService");
     const manager: EntityManager = req.scope.resolve("manager");
 
-    const result = await manager.transaction(async (transactionManager) => {
-      return await customerService
-        .withTransaction(transactionManager)
-        .retrieveByEmail(email);
-    });
+    let result;
+
+    try {
+      result = await manager.transaction(async (transactionManager) => {
+        return await customerService
+          .withTransaction(transactionManager)
+          .retrieveByEmail(email);
+      });
+    } catch {
+      res.sendStatus(401);
+      return;
+    }
 
     const {
       projectConfig: { jwt_secret },
