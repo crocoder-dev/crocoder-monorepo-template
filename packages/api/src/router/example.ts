@@ -20,16 +20,32 @@ export const exampleRouter = router({
         "Content-Type": "application/json",
         Authorization: "Bearer 12345",
       },
-      body: '{"email":"user@example.com"}',
+      body: '{"email":"user@example.com","password":"supersecret"}',
     };
 
     const response = await fetch(
-      "http://localhost:9000/admin/email-auth",
+      "http://localhost:9000/store/email-auth",
       options,
     );
     const cookie = response.headers.get("set-cookie");
+
+    const options1 = {
+      method: "GET",
+      headers: {
+        Cookie: cookie!,
+      },
+      credentials: "include" as RequestCredentials,
+    };
+
+    const response1 = await fetch(
+      "http://localhost:9000/store/customers/me",
+      options1,
+    );
+
+    console.log(response1.status, response1.statusText);
+
     const body = await response.json();
-    console.log(cookie, body);
+
     ctx.res.setHeader("set-cookie", cookie!);
     return { cookie, body };
   }),

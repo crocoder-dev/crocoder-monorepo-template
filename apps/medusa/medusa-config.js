@@ -27,7 +27,8 @@ const ADMIN_CORS =
 
 // CORS to avoid issues when consuming Medusa from a client
 const STORE_CORS =
-  process.env.STORE_CORS || "http://localhost:3000,http://localhost:5000";
+  process.env.STORE_CORS ||
+  "http://localhost:3000,http://localhost:5000,http://localhost:8000";
 
 // Database URL (here we use a local database called medusa-development)
 const DATABASE_URL =
