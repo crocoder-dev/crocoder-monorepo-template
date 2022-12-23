@@ -1,14 +1,14 @@
 import type { NextPage } from "next";
 import { signIn, signOut } from "next-auth/react";
 import { trpc } from "../utils/trpc";
-import { useMeCustomer } from "medusa-react";
 
 const Home: NextPage = () => {
   const { mutate: signInMedusa } = trpc.medusaAuth.signin.useMutation();
-  const { customer } = useMeCustomer();
+  const { mutate: signUpMedusa } = trpc.medusaAuth.signup.useMutation();
   return (
     <>
       <AuthShowcase />
+      <button onClick={() => signUpMedusa()}>Sign up Medusa</button>
       <button onClick={() => signInMedusa()}>Sign in Medusa</button>
     </>
   );
